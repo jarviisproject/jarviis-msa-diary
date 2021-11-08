@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef } from "react";
 
-function HistoryMap() {
+export default function HistoryMap() {
   const mapRef = useRef(null);
 
   const initMap = useCallback(() => {
@@ -10,31 +10,15 @@ function HistoryMap() {
     });
   }, [mapRef]);
 
-  // useEffect(() => {
-  //   initMap();
-  // }, [initMap]);
-
   useEffect(() => {
-    const script = document.createElement('script');
-  
-    script.src = "https://maps.googleapis.com/maps/api/js?key=내 키는 비밀이지롱&callback=initMap";
-    script.async = true;
-  
-    document.body.appendChild(script);
-  
-    return () => {
-      document.body.removeChild(script);
-    }
-  }, []);
+    initMap();
+  }, [initMap]);
 
-  return (<>
-    <h2>원래는 지도가 보여야합니다ㅠㅠ 쓰앵님 도움 필요!!</h2>
+  return (
     <div
       className="map"
       style={{ width: "500px", height: "500px" }}
       ref={mapRef}
     ></div>
-  </>);
+  );
 }
-
-export default HistoryMap;
